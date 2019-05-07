@@ -2,6 +2,7 @@ package com.narayan.abhijeet.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Route {
 
@@ -15,10 +16,11 @@ public class Route {
 	
 	private List<Station> sortedStations = new LinkedList<Station>();
 
-	public Route(Station source, Station destination, List<Station> stations, List<Train> trains) {
+	public Route(Station source, Station destination, List<Station> stations, Set<Station> sortedStations, List<Train> trains) {
 		this.source = source;
 		this.destination = destination;
 		this.stations= stations;
+		this.sortedStations = new LinkedList<>(sortedStations);
 		this.trains = trains;
 	}
 	

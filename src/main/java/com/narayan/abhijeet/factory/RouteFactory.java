@@ -3,10 +3,13 @@ package com.narayan.abhijeet.factory;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 import com.narayan.abhijeet.model.Route;
 import com.narayan.abhijeet.model.Station;
 import com.narayan.abhijeet.model.Train;
+import com.narayan.abhijeet.model.Tuple;
 
 public class RouteFactory {
 
@@ -24,45 +27,64 @@ public class RouteFactory {
 		
 		for(short i = 1; i <= num; i++) {
 			// small route
-			List<Station> stations = getStations((short)4);
+			Tuple<List<Station>, Set<Station>> tuple = getStations((short)4);
+			List<Station> stations = tuple.getT();
+			Set<Station> sortedStations = tuple.getV();
+			
 			List<Train> trains = TrainFactory.getTrains((short)2);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, trains));
+			routes.add(new Route(stations.get(0), stations.get(stations.size() -1), stations, sortedStations,trains));
 			
 			// small and busy
-			stations = getStations((short)5);
+			tuple = getStations((short)5);
+			stations = tuple.getT();
+			sortedStations = tuple.getV();
 			trains = TrainFactory.getTrains((short)10);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, trains));
+			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
 			
 			// average route
-			stations = getStations((short) 10);
+			tuple= getStations((short) 10);
+			stations = tuple.getT();
+			sortedStations = tuple.getV();
 			trains = TrainFactory.getTrains((short)3);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, trains));
+			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
 			
 			// average and busy
-			stations = getStations((short) 10);
+			tuple = getStations((short) 10);
+			stations = tuple.getT();
+			sortedStations = tuple.getV();
 			trains = TrainFactory.getTrains((short)12);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, trains));
+			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
 			
 			// long route
-			stations = getStations((short) 20);
+			tuple = getStations((short) 20);
+			stations = tuple.getT();
+			sortedStations = tuple.getV();
 			trains = TrainFactory.getTrains((short)5);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, trains));
+			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
 			
 			// long and busy
-			stations = getStations((short) 20);
+			tuple = getStations((short) 20);
+			stations = tuple.getT();
+			sortedStations = tuple.getV();
 			trains = TrainFactory.getTrains((short)12);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, trains));
+			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
 		}
 		
 		return routes;
 	}
 	
-	public static List<Station> getStations(short num){
-		List<Station> stations = new LinkedList<Station>();
+	@SuppressWarnings("unchecked")
+	public static Tuple<List<Station>, Set<Station>> getStations(short num){
 		
-		for(short i = 1; i<= num; i++) {
-			stations.add(StationValues[rnd.nextInt(StationCount)]);
+		List<Station> stations = new LinkedList<>();
+		Set<Station> sortedStations = new TreeSet<>();
+		
+		for(short i = 1; i<= num; i++){
+			
+			Station tmp = StationValues[rnd.nextInt(StationCount)];
+			stations.add(tmp);
+			sortedStations.add(tmp);
 		}
-		return stations;
+		return new Tuple(stations,sortedStations);
 	}
 }
