@@ -1,19 +1,19 @@
 package com.narayan.abhijeet.model;
 
-import java.util.LinkedList;
-import java.util.List;
-
+/*
+ * Represents a coach in a train
+ */
 public class Coach {
 
 	private short coachNo;
 	
 	private CoachClass coachClass;
 	
-	private List<Seat> availableSeats = new LinkedList<Seat>();
+	private boolean[] availableSeats;
 	
-	private List<Seat> bookedSeats = new LinkedList<Seat>();
+	private boolean[] bookedSeats;
 	
-	public Coach(short coachNo, CoachClass coachClass, List<Seat> availableSeats) {
+	public Coach(short coachNo, CoachClass coachClass, boolean[] availableSeats) {
 		this.coachNo = coachNo;
 		this.coachClass = coachClass;
 		this.availableSeats = availableSeats;
@@ -35,19 +35,19 @@ public class Coach {
 		this.coachClass = coachClass;
 	}
 
-	public List<Seat> getAvailableSeats() {
+	public boolean[] getAvailableSeats() {
 		return availableSeats;
 	}
 
-	public void setAvailableSeats(List<Seat> availableSeats) {
+	public void setAvailableSeats(boolean[] availableSeats) {
 		this.availableSeats = availableSeats;
 	}
 
-	public List<Seat> getBookedSeats() {
+	public boolean[] getBookedSeats() {
 		return bookedSeats;
 	}
 
-	public void setBookedSeats(List<Seat> bookedSeats) {
+	public void setBookedSeats(boolean[] bookedSeats) {
 		this.bookedSeats = bookedSeats;
 	}
 }

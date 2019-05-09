@@ -4,6 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+/*
+ * Represents a single route out of many possible
+ * routes between source station and destination station
+ */
 public class Route {
 
 	private Station source;

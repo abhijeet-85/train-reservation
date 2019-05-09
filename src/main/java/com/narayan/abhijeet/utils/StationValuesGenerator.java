@@ -1,10 +1,13 @@
 package com.narayan.abhijeet.utils;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+/*
+ * Randomly generates 100 station codes
+ * each having 3 capital letters
+ */
 public class StationValuesGenerator {
 
 	private static char[] chars = {'A','B','C','D','E','F', 'G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};

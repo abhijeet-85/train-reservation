@@ -10,6 +10,7 @@ import com.narayan.abhijeet.model.Route;
 import com.narayan.abhijeet.model.Station;
 import com.narayan.abhijeet.model.Train;
 import com.narayan.abhijeet.model.Tuple;
+import com.narayan.abhijeet.utils.Constants;
 
 public class RouteFactory {
 
@@ -27,47 +28,72 @@ public class RouteFactory {
 		
 		for(short i = 1; i <= num; i++) {
 			// small route
-			Tuple<List<Station>, Set<Station>> tuple = getStations((short)4);
+			short stationCount = 4;
+			Tuple<List<Station>, Set<Station>> tuple = getStations(stationCount);
 			List<Station> stations = tuple.getT();
 			Set<Station> sortedStations = tuple.getV();
 			
-			List<Train> trains = TrainFactory.getTrains((short)2);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1), stations, sortedStations,trains));
+			Station source = stations.get(0);
+			Station destination = stations.get(stationCount -1);
+			short trainCount = (short) rnd.nextInt(Constants.COACH_COMBINATIONS);
+			List<Train> trains = TrainFactory.getTrains(source, destination, trainCount);
+			routes.add(new Route(source, destination, stations, sortedStations,trains));
 			
 			// small and busy
-			tuple = getStations((short)5);
+			stationCount = 5;
+			tuple = getStations(stationCount);
 			stations = tuple.getT();
 			sortedStations = tuple.getV();
-			trains = TrainFactory.getTrains((short)10);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
+			
+			source = stations.get(0);
+			destination = stations.get(stationCount -1);
+			trainCount = (short) rnd.nextInt(Constants.COACH_COMBINATIONS);
+			trains = TrainFactory.getTrains(source, destination, trainCount);
+			routes.add(new Route(source, destination,stations, sortedStations, trains));
 			
 			// average route
-			tuple= getStations((short) 10);
+			stationCount = 10;
+			tuple= getStations(stationCount);
 			stations = tuple.getT();
 			sortedStations = tuple.getV();
-			trains = TrainFactory.getTrains((short)3);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
+			source = stations.get(0);
+			destination = stations.get(stationCount -1);
+			trainCount = (short) rnd.nextInt(Constants.COACH_COMBINATIONS);
+			trains = TrainFactory.getTrains(source, destination, trainCount);
+			routes.add(new Route(source, destination,stations, sortedStations, trains));
 			
 			// average and busy
-			tuple = getStations((short) 10);
+			stationCount = 10;
+			tuple = getStations(stationCount);
 			stations = tuple.getT();
 			sortedStations = tuple.getV();
-			trains = TrainFactory.getTrains((short)12);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
+			source = stations.get(0);
+			destination = stations.get(stationCount -1);
+			trainCount = (short) rnd.nextInt(Constants.COACH_COMBINATIONS);
+			trains = TrainFactory.getTrains(source, destination,trainCount);
+			routes.add(new Route(source, destination,stations, sortedStations, trains));
 			
 			// long route
-			tuple = getStations((short) 20);
+			stationCount = 20;
+			tuple = getStations(stationCount);
 			stations = tuple.getT();
 			sortedStations = tuple.getV();
-			trains = TrainFactory.getTrains((short)5);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
+			source = stations.get(0);
+			destination = stations.get(stationCount -1);
+			trainCount = (short) rnd.nextInt(Constants.COACH_COMBINATIONS);
+			trains = TrainFactory.getTrains(source, destination, trainCount);
+			routes.add(new Route(source, destination,stations, sortedStations, trains));
 			
 			// long and busy
-			tuple = getStations((short) 20);
+			stationCount = 20;
+			tuple = getStations(stationCount);
 			stations = tuple.getT();
 			sortedStations = tuple.getV();
-			trains = TrainFactory.getTrains((short)12);
-			routes.add(new Route(stations.get(0), stations.get(stations.size() -1),stations, sortedStations, trains));
+			source = stations.get(0);
+			destination = stations.get(stationCount -1);
+			trainCount = (short) rnd.nextInt(Constants.COACH_COMBINATIONS);
+			trains = TrainFactory.getTrains(source, destination, trainCount);
+			routes.add(new Route(source, destination,stations, sortedStations, trains));
 		}
 		
 		return routes;

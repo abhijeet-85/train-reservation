@@ -1,19 +1,30 @@
 package com.narayan.abhijeet.model;
 
+import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+ * Represents a train
+ */
 public class Train {
 
+	private int trainNumber;
+	
 	private Station source;
 	
 	private Station destination;
 	
 	private List<Coach> coaches = new LinkedList<Coach>();
 	
-	private Boolean[] runsOnDays = new Boolean[7];
+	private EnumSet<DaysOfWeek> runsOnDays;
 	
-	public Train(List<Coach> coaches, Boolean[] runsOnDays) {
+	private static int trainCount = 0;
+	
+	public Train(Station source, Station destination, List<Coach> coaches, EnumSet<DaysOfWeek> runsOnDays) {
+		this.trainNumber = ++trainCount;
+		this.source = source;
+		this.destination = destination;
 		this.coaches = coaches;
 		this.runsOnDays = runsOnDays;
 	}
@@ -42,11 +53,16 @@ public class Train {
 		this.coaches = coaches;
 	}
 
-	public Boolean[] getRunsOnDays() {
+	public EnumSet<DaysOfWeek> getRunsOnDays() {
 		return runsOnDays;
 	}
 
-	public void setRunsOnDays(Boolean[] runsOnDays) {
+	public void setRunsOnDays(EnumSet<DaysOfWeek> runsOnDays) {
 		this.runsOnDays = runsOnDays;
+	}
+
+	@Override
+	public String toString() {
+		return "Train [trainNumber=" + trainNumber + ", source=" + source + ", destination=" + destination + ", runsOnDays=" + runsOnDays + "]";
 	}
 }
